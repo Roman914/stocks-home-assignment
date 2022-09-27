@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: app
+    command: sh -c "python manage.py migrate &&
+                    python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    depends_on:
+      - pgdb
+      - redis
+  pgdb:
+    image: postgres
+    container_name: pgdb
+    environment:
+      - POSTGRES_DB=stocks_local
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+  redis:
+    image: "redis:alpine"
+    container_name: redis_broker
+
+volumes:
+  pgdata:
