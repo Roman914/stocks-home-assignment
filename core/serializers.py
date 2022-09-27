@@ -18,7 +18,6 @@ class StockDailyDataSerializer(rfs.ModelSerializer):
     class Meta:
         model = StockDailyData
         fields = (
-            'stock',
             'date',
             'open',
             'close',
