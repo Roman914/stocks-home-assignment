@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn gringotts_be.wsgi
+web: gunicorn stocks.wsgi
