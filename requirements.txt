@@ -12,5 +12,4 @@ django-cors-headers==3.5.0
 drf-spectacular==0.13.2
 whitenoise==5.2.0
 django-allauth==0.43.0
-yfinance==0.1.74
-yahoo_fin-0.8.9.1
+yahoo_fin==0.8.9.1
