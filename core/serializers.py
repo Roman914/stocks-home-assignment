@@ -50,8 +50,7 @@ class StockSerializer1(rfs.ModelSerializer):
 
 # noinspection PyAbstractClass
 class StockFilterSerializer(rfs.Serializer):
-    name = rfs.CharField(required=False)
-    ticker = rfs.CharField(required=False)
+    search = rfs.CharField(required=False)
 
 
 # noinspection PyAbstractClass

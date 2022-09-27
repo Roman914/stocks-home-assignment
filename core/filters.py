@@ -1,4 +1,5 @@
 from rest_framework.filters import BaseFilterBackend
+from django.db.models import Q
 
 from core.serializers import StockFilterSerializer
 
@@ -9,10 +10,10 @@ class StockFilter(BaseFilterBackend):
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
 
-        if x := data.get('name'):
-            queryset = queryset.filter(name__icontains=x)
-
-        if x := data.get('ticker'):
-            queryset = queryset.filter(ticker__icontains=x)
+        if x := data.get('search'):
+            queryset = queryset.filter(
+                Q(name__icontains=x) |
+                Q(ticker__icontains=x)
+            )
 
         return queryset
